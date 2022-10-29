@@ -1,99 +1,142 @@
 const router = require('express').Router();
+/* Importing the functions from the `post.model.js` file. */
+const { createPost, getPostAll, getPostById, deletePostById, deletePostAll, updatePostById, getPostByAuthor } = require("../../models/post.model");
 
 /**
  * CREATE NEW POST
+ * 
+ * Creating a new post.
  */
 router.post("/new", async (req, res) => {
-    const { newpost } = req.body;
+    const newpost = req.body;
     try {
-        // const post = await createPost(newpost);
-        // res.json(post);
-        res.send('CREATE NEW POST');
+        /* Creating a new post. */
+        const post = await createPost(newpost);
+        /* Sending the response to the client. */
+        res.json(post);
+        // res.send('CREATE NEW POST');
     } catch (error) {
+        /* Sending the error message to the client. */
         res.json({ Error: error.message });
     }
 });
 
 /**
  * GET ALL POSTS
+ * 
+ * Getting all the posts from the database.
  */
 router.get('/', async (req, res) => {
     try {
-        // const arrPost = await getPostAll();
-        // res.json(arrPost);
-        res.send('GET ALL POSTS');
+        /* Getting all the posts from the database. */
+        const arrPost = await getPostAll();
+        /* Sending the response to the client. */
+        res.json(arrPost);
+        // res.send('GET ALL POSTS');
     } catch (error) {
+        /* Sending the error message to the client. */
         res.json({ Error: error.message });
     }
 });
 
 /**
  * GET ONE POST
+ * 
+ * Getting the post by the id.
  */
 router.get('/post=:postId', async (req, res) => {
-    // const { postId } = req.params;
+    /* Destructuring the postId from the req.params. */
+    const { postId } = req.params;
     try {
-        // const post = await getPostById(postId);
-        // res.json(post);
-        res.send('GET ONE POST');
+        /* Getting the post by the id. */
+        const post = await getPostById(postId);
+        /* Sending the response to the client. */
+        res.json(post);
+        // res.send('GET ONE POST');
     } catch (error) {
+        /* Sending the error message to the client. */
         res.json({ Error: error.message });
     }
 });
 
 /**
  * DELETE ONE POST
+ * 
+ * Deleting a post by the id.
  */
 router.delete('/delete/post=:postId', async (req, res) => {
-    // const { postId } = req.params;
+    /* Destructuring the postId from the req.params. */
+    const { postId } = req.params;
     try {
-        // const post = await deletePostById(postId);
-        // res.json(post);
-        res.send('DELETE ONE POST');
+        /* Deleting the post by the id. */
+        const post = await deletePostById(postId);
+        /* Sending the response to the client. */
+        res.json(post);
+        // res.send('DELETE ONE POST');
     } catch (error) {
+        /* Sending the error message to the client. */
         res.json({ Error: error.message });
     }
 });
 
 /**
  * DELETE ALL POSTS
+ * 
+ * Deleting all the posts from the database.
  */
 router.delete('/delete/all', async (req, res) => {
     try {
-        // const post = await deletePostAll();
-        // res.json(post);
-        res.send('DELETE ALL POSTS');
+        /* Deleting all the posts from the database. */
+        const post = await deletePostAll();
+        /* Sending the response to the client. */
+        res.json(post);
+        // res.send('DELETE ALL POSTS');
     } catch (error) {
+        /* Sending the error message to the client. */
         res.json({ Error: error.message });
     }
 });
 
 /**
  * UPDATE ONE POST
+ * 
+ * Updating a post by the id.
  */
 router.put('/update/post=:postId', async (req, res) => {
-    // const { postId } = req.params;
+    /* Destructuring the postId from the req.params. */
+    const { postId } = req.params;
+    const newData = req.body;
     try {
-        // const post = await updatePostById(postId);
-        // res.json(post);
-        res.send('UPDATE ONE POST');
+        /* Updating the post by the id. */
+        const post = await updatePostById(postId, newData);
+        /* Sending the response to the client. */
+        res.json(post);
+        // res.send('UPDATE ONE POST');
     } catch (error) {
+        /* Sending the error message to the client. */
         res.json({ Error: error.message });
     }
 });
 
 /**
- * GET ALL POSTS OF AN ESPECIFIC AUTHOR
+ * GET ALL POSTS BY AN AUTHOR
+ * 
+ * Getting all the posts of an especific author.
  */
 router.get("/author/author=:authorId", async (req, res) => {
-    // const { authorId } = req.params;
+    /* Destructuring the authorId from the req.params. */
+    const { authorId } = req.params;
     try {
-        // const posts = await getPostByAuthor(authorId);
-        // res.json(posts);
-        res.send('GET ALL POSTS OF AN ESPECIFIC AUTHOR');
+        /* Getting all the posts of an especific author. */
+        const posts = await getPostByAuthor(authorId);
+        /* Sending the response to the client. */
+        res.json(posts);
+        // res.send('GET ALL POSTS OF AN ESPECIFIC AUTHOR');
     } catch (error) {
+        /* Sending the error message to the client. */
         res.json({ Error: error.message });
     }
 });
 
+/* Exporting the router to be used in the `index.js` file. */
 module.exports = router;
