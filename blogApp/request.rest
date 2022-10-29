@@ -1,3 +1,81 @@
-GET http://localhost:3000/api/posts
+
+# CREATE NEW POST
+POST http://localhost:3000/api/post/new
+Content-Type: application/json
+
+{
+    "title":"Lorem Ipsum", 
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", 
+    "category":"Sport", 
+    "authorId": 1
+}
 
 ###
+
+# GET ALL POSTS
+GET http://localhost:3000/api/post
+
+###
+# GET ONE POST (postId)
+GET http://localhost:3000/api/post/post=1
+
+###
+# DELETE ONE POST (postId)
+DELETE http://localhost:3000/api/post/delete/post=1
+
+###
+# DELETE ALL POSTS
+DELETE http://localhost:3000/api/post/delete/all
+
+###
+# UPDATE ONE POST (postId)
+PUT http://localhost:3000/api/post/update/post=1
+
+###
+# GET ALL POSTS OF AN ESPECIFIC AUTHOR (authorId)
+GET http://localhost:3000/api/post/author/author=1
+
+###
+
+# CREATE NEW AUTHOR
+POST http://localhost:3000/api/author/new
+Content-Type: application/json
+
+# {
+#     "name": "Laura", 
+#     "email":"laura@gmail.com", 
+#     "image":"http://cdnjs.unir/image/image_laura"
+# }
+
+{
+    "name": "Maitane", 
+    "email":"maitane@gmail.com", 
+    "image":"http://cdnjs.unir/image/image_maitane"
+}
+
+###
+# GET ALL AUTHORS
+GET http://localhost:3000/api/author
+
+###
+# GET ONE AUTHOR (authorId)
+GET http://localhost:3000/api/author/author=1
+
+###
+# DELETE ONE AUTHOR (authorId)
+DELETE  http://localhost:3000/api/author/delete/author=1
+
+###
+# DELETE ALL AUTHORS
+DELETE http://localhost:3000/api/author/delete/all
+
+###
+# UPDATE ONE AUTHOR (authorId)
+PUT http://localhost:3000/api/author/update/author=1
+ 
+
+
+
+
+
+
