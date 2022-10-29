@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 
+/* Creating a connection pool to the database. */
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -8,4 +9,5 @@ const pool = mysql.createPool({
     database: process.env.DB_DATABASE
 });
 
+/* Making the connection pool available to all the files in the project. */
 global.db = pool;
