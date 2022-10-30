@@ -14,7 +14,8 @@ router.post("/new", checkSchema(newPost), checkError, async (req, res) => {
     const newpost = req.body;
     try {
         /* Creating a new post. */
-        const post = await createPost(newpost);
+        const result = await createPost(newpost);
+        const post = await getPostById(result.insertId);
         /* Sending the response to the client. */
         res.json(post);
         // res.send('CREATE NEW POST');
@@ -72,9 +73,9 @@ router.delete('/delete/post=:postId', async (req, res) => {
     const { postId } = req.params;
     try {
         /* Deleting the post by the id. */
-        const post = await deletePostById(postId);
+        const result = await deletePostById(postId);
         /* Sending the response to the client. */
-        res.json(post);
+        res.json(result);
         // res.send('DELETE ONE POST');
     } catch (error) {
         /* Sending the error message to the client. */
@@ -90,9 +91,9 @@ router.delete('/delete/post=:postId', async (req, res) => {
 router.delete('/delete/all', async (req, res) => {
     try {
         /* Deleting all the posts from the database. */
-        const post = await deletePostAll();
+        const result = await deletePostAll();
         /* Sending the response to the client. */
-        res.json(post);
+        res.json(result);
         // res.send('DELETE ALL POSTS');
     } catch (error) {
         /* Sending the error message to the client. */
@@ -111,7 +112,8 @@ router.put('/update/post=:postId', async (req, res) => {
     const newData = req.body;
     try {
         /* Updating the post by the id. */
-        const post = await updatePostById(postId, newData);
+        const result = await updatePostById(postId, newData);
+        const post = await getPostById(postId);
         /* Sending the response to the client. */
         res.json(post);
         // res.send('UPDATE ONE POST');
@@ -131,9 +133,9 @@ router.get("/author/author=:authorId", async (req, res) => {
     const { authorId } = req.params;
     try {
         /* Getting all the posts of an especific author. */
-        const posts = await getPostByAuthor(authorId);
+        const arrPost = await getPostByAuthor(authorId);
         /* Sending the response to the client. */
-        res.json(posts);
+        res.json(arrPost);
         // res.send('GET ALL POSTS OF AN ESPECIFIC AUTHOR');
     } catch (error) {
         /* Sending the error message to the client. */

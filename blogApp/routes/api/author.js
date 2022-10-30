@@ -15,7 +15,8 @@ router.post("/new", checkSchema(newAuthor), checkError, async (req, res) => {
     const newAuthor = req.body;
     try {
         /* This is creating a new author. */
-        const author = await createAuthor(newAuthor);
+        const result = await createAuthor(newAuthor);
+        const author = await getAuthorById(result.insertId);
         res.json(author);
         // res.send('CREATE NEW AUTHOR');
     } catch (error) {
@@ -72,9 +73,9 @@ router.delete('/delete/author=:authorId', async (req, res) => {
     const { authorId } = req.params;
     try {
         /* This is deleting an author by their id. */
-        const author = await deleteAuthorById(authorId);
+        const result = await deleteAuthorById(authorId);
         /* Sending the response back to the client. */
-        res.json(author);
+        res.json(result);
         // res.send('DELETE ONE AUTHOR');
     } catch (error) {
         /* This is sending the error message back to the client. */
@@ -90,9 +91,9 @@ router.delete('/delete/author=:authorId', async (req, res) => {
 router.delete('/delete/all', async (req, res) => {
     try {
         /* Deleting all authors. */
-        const post = await deleteAuthorAll();
+        const result = await deleteAuthorAll();
         /* Sending the response back to the client. */
-        res.json(post);
+        res.json(result);
         // res.send('DELETE ALL AUTHORS');
     } catch (error) {
         /* Sending the error message back to the client. */
@@ -111,7 +112,8 @@ router.put('/update/author=:authorId', checkSchema(newAuthor), checkError, async
     const newAuthor = req.body;
     try {
         /* Updating the author by their id. */
-        const author = await updateAuthorById(authorId, newAuthor);
+        const result = await updateAuthorById(authorId, newAuthor);
+        const author = await getAuthorById(authorId);
         /* Sending the response back to the client. */
         res.json(author);
         // res.send('UPDATE ONE AUTHOR');

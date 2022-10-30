@@ -4,10 +4,10 @@ POST http://localhost:3000/api/post/new
 Content-Type: application/json
 
 {
-    "title": "Lorem Ipsum", 
+    "title": " Lorem Ipsum ", 
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", 
-    "category": "Politic", 
-    "authorId": 5
+    "category": "News", 
+    "authorId": 1
 }
 
 ###
@@ -29,13 +29,14 @@ DELETE http://localhost:3000/api/post/delete/all
 
 ###
 # UPDATE ONE POST (postId)
-PUT http://localhost:3000/api/post/update/post=4
+PUT http://localhost:3000/api/post/update/post=1
 Content-Type: application/json
 
 {
-    "title": "Lorem Ipsum", 
+    "title": " AAAAAAA ", 
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", 
-    "category":"Geographic",
+    "date_create": "2022-10-29 13:55:54",
+    "category": "News", 
     "authorId": 1
 }
 
@@ -79,13 +80,13 @@ DELETE http://localhost:3000/api/author/delete/all
 
 ###
 # UPDATE ONE AUTHOR (authorId)
-PUT http://localhost:3000/api/author/update/author=6
+PUT http://localhost:3000/api/author/update/author=3
 Content-Type: application/json
 
 {
-    "name": "Mikel", 
-    "email":"mikel123@gmail.com", 
-    "image":"http://cdnjs.unir/image/image_mikel"
+    "name": "Maitane", 
+    "email":"maitanedadasdas@gmail.com", 
+    "image":"http://cdnjs.unir/image/image_maitan23"
 }
  
 
