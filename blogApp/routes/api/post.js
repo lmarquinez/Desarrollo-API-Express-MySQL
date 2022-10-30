@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { createPost, getPostAll, getPostById, deletePostById, deletePostAll, updatePostById, getPostByAuthor } = require("../../models/post.model");
 /* This is destructuring the checkSchema function from the express-validator module. */
 const { checkSchema } = require("express-validator");
-const { newPost, checkError, checkPost, checkAuthor } = require("../../helpers/validators");
+const { newPost, updatePost, checkError, checkPost, checkAuthor } = require("../../helpers/validators");
 
 /**
  * CREATE NEW POST
@@ -108,7 +108,7 @@ router.delete('/delete/all', async (req, res) => {
  * 
  * Updating a post by the id.
  */
-router.put('/update/post=:postId', checkPost, async (req, res) => {
+router.put('/update/post=:postId', checkSchema(updatePost), checkError, checkPost, async (req, res) => {
     /* Destructuring the postId from the req.params. */
     const { postId } = req.params;
     const newData = req.body;

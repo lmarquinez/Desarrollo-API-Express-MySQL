@@ -36,6 +36,28 @@ const newAuthor = {
     }
 };
 
+const updateAuthor = {
+    name: {
+        optional: true,
+        /* Trimming the whitespace from the beginning and the end of the string. */
+        trim: true,
+    },
+    email: {
+        optional: true,
+        /* Trimming the whitespace from the beginning and the end of the string. */
+        trim: true,
+        /* Checking if the email is valid. */
+        isEmail: {
+            errorMessage: "The email must be valid",
+        }
+    },
+    image: {
+        optional: true,
+        /* Trimming the whitespace from the beginning and the end of the string. */
+        trim: true,
+    }
+};
+
 const newPost = {
     title: {
         /* Checking if the title field exists, and if it doesn't, it returns the error message. */
@@ -74,6 +96,48 @@ const newPost = {
         exists: {
             errorMessage: "The post description is required",
         },
+        /* Trimming the whitespace from the beginning and the end of the string. */
+        trim: true,
+        /* Checking if the category is one of the following: News, Sport, Opinion, Photography, or Research. */
+        custom: {
+            options: (value) => {
+                const arrOption = ['news', 'sport', 'opinion', 'photography', 'research']
+                return arrOption.includes(value.toLowerCase());
+            },
+            errorMessage: 'The category must be one of the following: News, Sport, Opinion, Photography, or Research.'
+        }
+    }
+};
+
+const updatePost = {
+    title: {
+        optional: true,
+        /* Trimming the whitespace from the beginning and the end of the string. */
+        trim: true,
+        /* Checking if the length of the title is between 2 and 33 characters. */
+        isLength: {
+            options: {
+                min: 2,
+                max: 33
+            },
+            errorMessage: "Maximum character length is 33 characters, and the minimum 2.",
+        },
+    },
+    description: {
+        optional: true,
+        /* Trimming the whitespace from the beginning and the end of the string. */
+        trim: true,
+        /* Checking if the length of the description is between 10 and 255 characters. */
+        isLength: {
+            options: {
+                min: 10,
+                max: 255
+            },
+            errorMessage: "Maximum character length is 255 characters, and the minimum 10."
+        }
+    },
+    category: {
+        optional: true,
         /* Trimming the whitespace from the beginning and the end of the string. */
         trim: true,
         /* Checking if the category is one of the following: News, Sport, Opinion, Photography, or Research. */
@@ -132,5 +196,5 @@ const checkAuthor = async (req, res, next) => {
 
 /* Exporting the functions to be used in other files. */
 module.exports = {
-    newAuthor, newPost, checkError, checkPost, checkAuthor
+    newAuthor, updateAuthor, newPost, updatePost, checkError, checkPost, checkAuthor
 }
