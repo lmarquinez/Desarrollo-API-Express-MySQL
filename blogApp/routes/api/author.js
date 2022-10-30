@@ -74,8 +74,9 @@ router.delete('/delete/author=:authorId', checkAuthor, async (req, res) => {
     try {
         /* This is deleting an author by their id. */
         const result = await deleteAuthorById(authorId);
+        const arrAuthor = await getAuthorAll();
         /* Sending the response back to the client. */
-        res.json(result);
+        res.json(arrAuthor);
         // res.send('DELETE ONE AUTHOR');
     } catch (error) {
         /* This is sending the error message back to the client. */
@@ -92,8 +93,9 @@ router.delete('/delete/all', async (req, res) => {
     try {
         /* Deleting all authors. */
         const result = await deleteAuthorAll();
+        const arrAuthor = await getAuthorAll();
         /* Sending the response back to the client. */
-        res.json(result);
+        res.json(arrAuthor);
         // res.send('DELETE ALL AUTHORS');
     } catch (error) {
         /* Sending the error message back to the client. */

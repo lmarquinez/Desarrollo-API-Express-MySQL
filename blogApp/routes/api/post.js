@@ -74,8 +74,9 @@ router.delete('/delete/post=:postId', checkPost, async (req, res) => {
     try {
         /* Deleting the post by the id. */
         const result = await deletePostById(postId);
+        const arrPost = await getPostAll();
         /* Sending the response to the client. */
-        res.json(result);
+        res.json(arrPost);
         // res.send('DELETE ONE POST');
     } catch (error) {
         /* Sending the error message to the client. */
@@ -92,8 +93,9 @@ router.delete('/delete/all', async (req, res) => {
     try {
         /* Deleting all the posts from the database. */
         const result = await deletePostAll();
+        const arrPost = await getPostAll();
         /* Sending the response to the client. */
-        res.json(result);
+        res.json(arrPost);
         // res.send('DELETE ALL POSTS');
     } catch (error) {
         /* Sending the error message to the client. */
