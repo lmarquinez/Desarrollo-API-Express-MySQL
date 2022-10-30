@@ -4,7 +4,7 @@ const { createAuthor, getAuthorAll, getAuthorById, deleteAuthorById, deleteAutho
 /* This is destructuring the checkSchema function from the express-validator module. */
 const { checkSchema } = require("express-validator");
 /* This is destructuring the newAuthor and checkError functions from the validators.js file. */
-const { newAuthor, checkError } = require("../../helpers/validators");
+const { newAuthor, checkError, checkAuthor } = require("../../helpers/validators");
 
 /**
  * CREATE NEW AUTHOR
@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
  * 
  * This is getting an author by their id.
  */
-router.get('/author=:authorId', async (req, res) => {
+router.get('/author=:authorId', checkAuthor, async (req, res) => {
     /* Destructuring the authorId from the req.params object. */
     const { authorId } = req.params;
     try {
@@ -68,7 +68,7 @@ router.get('/author=:authorId', async (req, res) => {
  * 
  * This is deleting an author by their id.
  */
-router.delete('/delete/author=:authorId', async (req, res) => {
+router.delete('/delete/author=:authorId', checkAuthor, async (req, res) => {
     /* Destructuring the authorId from the req.params object. */
     const { authorId } = req.params;
     try {
@@ -106,7 +106,7 @@ router.delete('/delete/all', async (req, res) => {
  *
  * The above code is updating an author by their id. 
  */
-router.put('/update/author=:authorId', checkSchema(newAuthor), checkError, async (req, res) => {
+router.put('/update/author=:authorId', checkSchema(newAuthor), checkError, checkAuthor, async (req, res) => {
     /* Destructuring the authorId from the req.params object. */
     const { authorId } = req.params;
     const newAuthor = req.body;

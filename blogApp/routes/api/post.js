@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { createPost, getPostAll, getPostById, deletePostById, deletePostAll, updatePostById, getPostByAuthor } = require("../../models/post.model");
 /* This is destructuring the checkSchema function from the express-validator module. */
 const { checkSchema } = require("express-validator");
-const { newPost, checkError } = require("../../helpers/validators");
+const { newPost, checkError, checkPost, checkAuthor } = require("../../helpers/validators");
 
 /**
  * CREATE NEW POST
@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
  * 
  * Getting the post by the id.
  */
-router.get('/post=:postId', async (req, res) => {
+router.get('/post=:postId', checkPost, async (req, res) => {
     /* Destructuring the postId from the req.params. */
     const { postId } = req.params;
     try {
@@ -68,7 +68,7 @@ router.get('/post=:postId', async (req, res) => {
  * 
  * Deleting a post by the id.
  */
-router.delete('/delete/post=:postId', async (req, res) => {
+router.delete('/delete/post=:postId', checkPost, async (req, res) => {
     /* Destructuring the postId from the req.params. */
     const { postId } = req.params;
     try {
@@ -106,7 +106,7 @@ router.delete('/delete/all', async (req, res) => {
  * 
  * Updating a post by the id.
  */
-router.put('/update/post=:postId', async (req, res) => {
+router.put('/update/post=:postId', checkPost, async (req, res) => {
     /* Destructuring the postId from the req.params. */
     const { postId } = req.params;
     const newData = req.body;
@@ -128,7 +128,7 @@ router.put('/update/post=:postId', async (req, res) => {
  * 
  * Getting all the posts of an especific author.
  */
-router.get("/author/author=:authorId", async (req, res) => {
+router.get("/author/author=:authorId", checkAuthor, async (req, res) => {
     /* Destructuring the authorId from the req.params. */
     const { authorId } = req.params;
     try {

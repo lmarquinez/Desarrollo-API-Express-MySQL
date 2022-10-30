@@ -1,5 +1,11 @@
 const { validationResult } = require('express-validator');
 
+/* Importing the functions from the `post.model.js` file. */
+const { getPostById } = require("../models/post.model");
+/* Importing the functions from the `author.model.js` file. */
+const { getAuthorById } = require("../models/author.model");
+
+
 /* A validation object that is used to validate the author data. */
 const newAuthor = {
     /* Validating the name field, it is checking if the name field exists, and if it doesn't, it returns
@@ -102,7 +108,29 @@ const checkError = (req, res, next) => {
     next();
 };
 
+const checkPost = async (req, res, next) => {
+    const { postId } = req.params;
+    /* Checking if the post id exists. */
+    if (await getPostById(postId)) {
+        /* A function that is used to pass control to the next middleware function. */
+        next();
+    } else {
+        res.send('That post does not exist')
+    }
+};
+
+const checkAuthor = async (req, res, next) => {
+    const { authorId } = req.params;
+    /* Checking if the author id exists. */
+    if (await getAuthorById(authorId)) {
+        /* A function that is used to pass control to the next middleware function. */
+        next();
+    } else {
+        res.send('That author does not exist')
+    }
+};
+
 /* Exporting the functions to be used in other files. */
 module.exports = {
-    newAuthor, newPost, checkError
+    newAuthor, newPost, checkError, checkPost, checkAuthor
 }
