@@ -1,13 +1,16 @@
 const router = require('express').Router();
 /* Importing the functions from the `post.model.js` file. */
 const { createPost, getPostAll, getPostById, deletePostById, deletePostAll, updatePostById, getPostByAuthor } = require("../../models/post.model");
+/* This is destructuring the checkSchema function from the express-validator module. */
+const { checkSchema } = require("express-validator");
+const { newPost, checkError } = require("../../helpers/validators");
 
 /**
  * CREATE NEW POST
  * 
  * Creating a new post.
  */
-router.post("/new", async (req, res) => {
+router.post("/new", checkSchema(newPost), checkError, async (req, res) => {
     const newpost = req.body;
     try {
         /* Creating a new post. */
