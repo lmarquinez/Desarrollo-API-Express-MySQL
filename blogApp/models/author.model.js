@@ -90,11 +90,37 @@ const deleteAuthorAll = () => {
  * @param authorId - The id of the author to update.
  * @returns The authorId is being returned.
  */
-const updateAuthorById = (authorId, { name, email, image }) => {
-    /* Updating the author with the given authorId. */
+const updateAuthorById = (authorId, newData) => {
+    const properties = [];
+    let values = [];
+    let query = "UPDATE authors SET ";
+
+    /* It's looping through the properties of the newData object and pushing them into the properties
+    array. */
+    for (const item in newData) {
+        properties.push(item);
+        values.push(newData[item]);
+    }
+
+    /* It's adding the first property of the newData object to the query string. */
+    query += properties[0] + " = ?";
+
+    /* It's checking if the properties array has more than one element. If it does, it's removing the first
+    element from the array and then looping through the array and adding the elements to the query
+    string. */
+    if (properties.length > 1) {
+        properties.shift();
+        properties.forEach((elem) => {
+            query += ', ' + elem + ' = ?';
+        });
+    }
+
+    query += ' WHERE authorid = ?';
+    values.push(authorId);
+
+    /* It's executing the query and returning the result of the query. */
     return executeQuery(
-        "UPDATE authors SET name = ?, email = ?, image = ? WHERE authorid=?",
-        [name, email, image, authorId]
+        query, values
     );
 };
 

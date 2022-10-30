@@ -91,12 +91,37 @@ const deletePostAll = () => {
  * @param postId - The id of the post to update.
  * @returns The result of the query.
  */
-const updatePostById = (postId, { title, description, date_create, category, authorId }
-) => {
-    /* It's updating a post in the database with the given postId */
+const updatePostById = (postId, newData) => {
+    const properties = [];
+    let values = [];
+    let query = "UPDATE posts SET ";
+
+    /* It's looping through the properties of the newData object and pushing them into the properties
+    array. */
+    for (const item in newData) {
+        properties.push(item);
+        values.push(newData[item]);
+    }
+
+    /* It's adding the first property of the newData object to the query string. */
+    query += properties[0] + " = ?";
+
+    /* It's checking if the properties array has more than one element. If it does, it's removing the first
+    element from the array and then looping through the array and adding the elements to the query
+    string. */
+    if (properties.length > 1) {
+        properties.shift();
+        properties.forEach((elem) => {
+            query += ', ' + elem + ' = ?';
+        });
+    }
+
+    query += ' WHERE postid = ?';
+    values.push(postId);
+
+    /* It's executing the query and returning the result of the query. */
     return executeQuery(
-        "UPDATE posts SET title = ?, description = ?, date_create = ?, category = ?, authorid = ? WHERE postid=?",
-        [title, description, date_create, category, authorId, postId]
+        query, values
     );
 };
 
