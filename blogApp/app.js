@@ -8,6 +8,10 @@ const indexRouter = require('./routes/index');
 /* Importing the api.js file from the routes folder. */
 const apiRouter = require('./routes/api');
 
+/* Importing the new route for the authors views*/
+const authorsRouter = require('./routes/authors');
+
+
 const app = express();
 
 // view engine setup
@@ -23,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 /* Telling the app to use the apiRouter when the url is /api. */
 app.use('/api', apiRouter);
+
+app.use('/authors', authorsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

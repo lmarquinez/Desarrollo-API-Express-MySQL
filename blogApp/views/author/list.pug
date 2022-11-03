@@ -1,0 +1,23 @@
+extends ../index.pug
+
+block authors
+    div.container.mt-4
+        table.table
+            thead
+                tr
+                    th ID 
+                    th Name 
+                    th Email 
+                    th Image
+                    th
+                        a.btn.btn-warning.btn-sm.me-2(href="/authors/new/") New Author
+            tbody 
+                each author in authors
+                    tr
+                        td= author.authorid
+                        td= author.name
+                        td= author.email
+                        td= author.image
+                        td
+                            a.btn.btn-info.btn-sm.me-2(href="/authors/edit/"+author.authorid) Edit
+                            a.btn.btn-danger.btn-sm(href="/authors/delete/"+author.authorid) Delete

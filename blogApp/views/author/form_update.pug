@@ -1,0 +1,15 @@
+extends ../index.pug
+
+block form_update 
+    form(action="/authors/update", method="post") 
+        div.mb-3
+            label.form-label Name 
+            input.form-control(type="text", name="name", value=author.name)
+        div.mb-3
+            label.form-label Email
+            input.form-control(type="text", name="email", value=author.email)
+        div.mb-3
+            label.form-label Image
+            input.form-control(type="text", name="image", value=author.image)
+        input(type="hidden", name="authorId", value=author.authorid)
+        input.btn.btn-info(type="submit", value="Send")
