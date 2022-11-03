@@ -10,7 +10,7 @@ const { newPost, updatePost, checkError, checkPost, checkAuthor } = require("../
  * 
  * Creating a new post.
  */
-router.post("/new", checkSchema(newPost), checkError, async (req, res) => {
+router.post("/new", checkSchema(newPost), checkError, checkAuthor, async (req, res) => {
     const newpost = req.body;
     try {
         /* Creating a new post. */
