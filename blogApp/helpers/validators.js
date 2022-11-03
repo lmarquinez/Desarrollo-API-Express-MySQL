@@ -184,7 +184,11 @@ const checkPost = async (req, res, next) => {
 };
 
 const checkAuthor = async (req, res, next) => {
-    const { authorId } = req.params;
+    /* If the authorId cames from the body and not from params*/
+    let authorId = req.params.authorId;
+    if (authorId === undefined) {
+        authorId = req.body.authorId;
+    }
     /* Checking if the author id exists. */
     if (await getAuthorById(authorId)) {
         /* A function that is used to pass control to the next middleware function. */
