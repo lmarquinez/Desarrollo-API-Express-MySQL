@@ -1,0 +1,21 @@
+extends ../index.pug
+
+block form_update_post 
+    form(action="/posts/update", method="post") 
+        div.mb-3
+            label.form-label Title 
+            input.form-control(type="text", name="title", value=post.title)
+        div.mb-3
+            label.form-label Description
+            textarea.form-control(type="text", name="description")=post.description
+        div.mb-3
+            label.form-label Date create
+            input.form-control(type="date", name="date_create", value=post.date_create)
+        div.mb-3
+            label.form-label Category
+            input.form-control(type="text", name="category", value=post.category)
+        div.mb-3
+            label.form-label Author ID
+            input.form-control(type="number", name="authorId", value=post.authorid)
+        input(type="hidden", name="postId", value= post.postid)
+        input.btn.btn-info(type="submit", value="Send")

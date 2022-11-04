@@ -1,0 +1,20 @@
+extends ../index.pug
+
+block posts
+    div.container.mt-4
+        .card.text-bg-warning(style='max-width: 100%')
+            a.card-header.fw-bold.text-center(href="/posts/new/") New Post
+
+        .d-flex.gx-3
+            each post in posts
+                .card(style='width: 18rem;')
+                    .card-body
+                        h5.card-title= post.title
+                        h6.card-subtitle.mb-2.text-muted= post.date_create
+                        p.card-text= post.description
+                        p.card-text.text-muted Categoy: #{post.category}
+                        p.card-text.text-muted Author: #{post.authorid}
+                        .d-flex.justify-content-around
+                            a.btn.btn-info.btn-sm.me-2(style='width: 18rem;', href="/posts/edit/"+post.postid) Edit
+                            a.btn.btn-danger.btn-sm(style='width: 18rem;', href="/posts/delete/"+post.postid) Delete
+

@@ -10,7 +10,8 @@ const apiRouter = require('./routes/api');
 
 /* Importing the new route for the authors views*/
 const authorsRouter = require('./routes/authors');
-
+/* Importing the new route for the posts views*/
+const postsRouter = require('./routes/posts');
 
 const app = express();
 
@@ -28,7 +29,10 @@ app.use('/', indexRouter);
 /* Telling the app to use the apiRouter when the url is /api. */
 app.use('/api', apiRouter);
 
+/* Telling the app to use the authorsRouter when the url is /authors. */
 app.use('/authors', authorsRouter);
+/* Telling the app to use the postsRouter when the url is /posts. */
+app.use('/posts', postsRouter);
 
 
 // catch 404 and forward to error handler
