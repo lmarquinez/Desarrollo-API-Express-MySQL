@@ -41,7 +41,7 @@ router.get('/edit/:postId', async (req, res) => {
     })
 });
 
-/* REQUEST TO UPDATE THE AUTHOR FROM THE FORM */
+/* REQUEST TO UPDATE THE POST FROM THE FORM */
 router.post('/update', async (req, res) => {
     const { postId } = req.body;
     const result = await updatePostById(postId, req.body);
@@ -49,7 +49,7 @@ router.post('/update', async (req, res) => {
     res.redirect('/posts');
 });
 
-/* DELETE THE SELECTED AUTHOR */
+/* DELETE THE SELECTED POST */
 router.get('/delete/:postId', async (req, res) => {
     const { postId } = req.params;
     const result = await deletePostById(postId);
