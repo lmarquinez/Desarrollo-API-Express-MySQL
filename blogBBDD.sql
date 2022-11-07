@@ -26,12 +26,12 @@ DROP TABLE IF EXISTS `authors`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `authors` (
   `authorid` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`authorid`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `authors` (
 
 LOCK TABLES `authors` WRITE;
 /*!40000 ALTER TABLE `authors` DISABLE KEYS */;
-INSERT INTO `authors` VALUES (1,'Laura','laura@gmail.com','https://cdnjs.unir/images/image_laura'),(2,'Maitane','maitane@gmail.com','https://cdnjs.unir/images/image_laura');
+INSERT INTO `authors` VALUES (1,'Laura','lauri@gmail.com','https://4.bp.blogspot.com/-XTj2j1Mf2To/WJHZujQ79WI/AAAAAAAAAcU/c7tg_0ktzzs80g5JYAiN72IqKWhhpqAQACLcB/s1600/avatar%2Bchica.png'),(2,'Maitane','maitane@gmail.com','http://3.bp.blogspot.com/-NsVwoVL3fwM/VXB_WelG4jI/AAAAAAAAAYc/Pu4XZ5ezUvE/s1600/myAvatar.png'),(3,'Aitzol','aitzol@gmail.com','https://i.pinimg.com/236x/e9/57/2a/e9572a70726980ed5445c02e1058760b.jpg');
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,15 +53,15 @@ DROP TABLE IF EXISTS `posts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `posts` (
   `postid` tinyint NOT NULL AUTO_INCREMENT,
-  `title` varchar(65) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(65) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_create` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `category` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `authorid` int NOT NULL,
   PRIMARY KEY (`postid`),
   KEY `fk_blogs_authors_idx` (`authorid`),
   CONSTRAINT `fk_blogs_authors` FOREIGN KEY (`authorid`) REFERENCES `authors` (`authorid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'Lorem ipsum','adlnk asdkn joln nld nlkad nlnds lnkda asdnkl','2022-10-29 14:42:00','Sport',1),(2,'Lorem ipsum','adlnk asdkn joln nld nlkad nlnds lnkda asdnkl','2022-10-29 11:55:54','Sport',1),(3,'Ipsum lorem','asdn sakdn ihnjk nsda , aisdhad knkd ihoas asdm','2022-10-29 11:55:54','Politic',2);
+INSERT INTO `posts` VALUES (1,'Arial Black','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','2022-11-07 12:22:43','Sport',1),(2,'Lorem Ipsum','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','2022-11-07 12:22:54','News',2),(3,'Comic Sans','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','2022-11-07 12:23:12','News',1);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -83,4 +83,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-29 16:43:06
+-- Dump completed on 2022-11-07 13:28:42
