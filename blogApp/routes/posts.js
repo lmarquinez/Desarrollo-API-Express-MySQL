@@ -69,7 +69,6 @@ router.get('/author', async (req, res) => {
     console.log(authorName);
     // const posts = await getPostByAuthor(authorid);
     const posts = await getPostByAuthorName(authorName);
-    console.log(posts);
 
     for (const post of posts) {
         post.date_create = dayjs(post.date_create).format('YYYY-MM-DD');
