@@ -6,7 +6,7 @@ block posts
             a.card-header.fw-bold.text-center(href="/posts/new/") New Post
 
         form.form-inline.d-flex(action="/posts/author", method="get") 
-            input.form-control.mr-sm-2(type='number' placeholder='Search by author ID' aria-label='Search', name="authorid")
+            input.form-control.mr-sm-2(type='text' placeholder='Search by author name' aria-label='Search', name="authorName")
             button.btn.btn-outline-primary.my-2.my-sm-0(type='submit') Search
 
         .d-flex.flex-wrap.gx-3.no

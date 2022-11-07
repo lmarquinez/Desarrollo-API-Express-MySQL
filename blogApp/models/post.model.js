@@ -141,8 +141,16 @@ const getPostByAuthor = (authorId) => {
     );
 };
 
+const getPostByAuthorName = (authorName) => {
+    console.log(authorName);
+    return executeQuery(
+        "SELECT * FROM posts AS p INNER JOIN authors AS a ON a.authorId = p.authorId WHERE a.name LIKE ?",
+        ['%' + authorName + '%']
+    );
+};
+
 /* Exporting the functions so that they can be used in other files. */
 module.exports = {
-    createPost, getPostAll, getPostById, deletePostById, deletePostAll, updatePostById, getPostByAuthor
+    createPost, getPostAll, getPostById, deletePostById, deletePostAll, updatePostById, getPostByAuthor, getPostByAuthorName
 };
 

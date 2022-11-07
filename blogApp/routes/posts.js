@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createPost, getPostAll, getPostById, deletePostById, updatePostById, getPostByAuthor } = require('../models/post.model');
+const { createPost, getPostAll, getPostById, deletePostById, updatePostById, getPostByAuthor, getPostByAuthorName } = require('../models/post.model');
 const { getAuthorAll, getAuthorById } = require('../models/author.model');
 
 const dayjs = require('dayjs');
@@ -62,10 +62,14 @@ router.get('/delete/:postId', async (req, res) => {
     res.redirect('/posts');
 })
 
-/* GET ALL POSTS BY AUTHOR ID */
+/* GET ALL POSTS BY AUTHOR NAME */
 router.get('/author', async (req, res) => {
-    const { authorid } = req.query;
-    const posts = await getPostByAuthor(authorid);
+    // const { authorid } = req.query;
+    const { authorName } = req.query;
+    console.log(authorName);
+    // const posts = await getPostByAuthor(authorid);
+    const posts = await getPostByAuthorName(authorName);
+    console.log(posts);
 
     for (const post of posts) {
         post.date_create = dayjs(post.date_create).format('YYYY-MM-DD');
