@@ -4,14 +4,14 @@ block form_new_post
     form(action="/posts/create", method="post") 
         div.mb-3
             label.form-label Title 
-            input.form-control(type="text", name="title")
+            input.form-control(type="text", name="title" required)
         div.mb-3
             label.form-label Description
-            textarea.form-control(name="description")
+            textarea.form-control(name="description" required)
         div.mb-3
             label.form-label Category
-            input.form-control(type="text", name="category")
+            input.form-control(type="text", name="category" required)
         div.mb-3
             label.form-label Author ID
-            input.form-control(type="number", name="authorId")
+            input.form-control(type="number", name="authorId" required)
         input.btn.btn-info(type="submit", value="Send")

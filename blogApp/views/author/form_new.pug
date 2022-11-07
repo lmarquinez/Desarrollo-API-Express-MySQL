@@ -4,11 +4,11 @@ block form_new
     form(action="/authors/create", method="post") 
         div.mb-3
             label.form-label Name 
-            input.form-control(type="text", name="name")
+            input.form-control(type="text", name="name" required)
         div.mb-3
             label.form-label Email
-            input.form-control(type="text", name="email")
+            input.form-control(type="text", name="email" required)
         div.mb-3
             label.form-label Image
-            input.form-control(type="text", name="image")
+            input.form-control(type="text", name="image" required)
         input.btn.btn-info(type="submit", value="Send")
