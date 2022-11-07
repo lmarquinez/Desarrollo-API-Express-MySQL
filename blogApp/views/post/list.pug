@@ -5,6 +5,10 @@ block posts
         .card.text-bg-warning(style='max-width: 100%')
             a.card-header.fw-bold.text-center(href="/posts/new/") New Post
 
+        form.form-inline.d-flex(action="/posts/author", method="get") 
+            input.form-control.mr-sm-2(type='number' placeholder='Search by author ID' aria-label='Search', name="authorid")
+            button.btn.btn-outline-primary.my-2.my-sm-0(type='submit') Search
+
         .d-flex.gx-3
             each post in posts
                 .card(style='width: 18rem;')

@@ -57,4 +57,20 @@ router.get('/delete/:postId', async (req, res) => {
     res.redirect('/posts');
 })
 
+/* GET ALL POSTS BY AUTHOR ID */
+router.get('/author', async (req, res) => {
+    const { authorid } = req.query;
+    const posts = await getPostByAuthor(authorid);
+
+    for (const post of posts) {
+        post.date_create = dayjs(post.date_create).format('YYYY-MM-DD');
+        const { name } = await getAuthorById(post.authorid);
+        post.authorid = name;
+    }
+
+    res.render('post/list', {
+        posts
+    });
+})
+
 module.exports = router;
