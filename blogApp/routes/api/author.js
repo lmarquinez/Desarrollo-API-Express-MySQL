@@ -35,7 +35,11 @@ router.get('/', async (req, res) => {
         /* This is getting all authors. */
         const arrAuthor = await getAuthorAll();
         /* Sending the response back to the client. */
-        res.json(arrAuthor);
+        if (arrAuthor.length === 0) {
+            res.json({ Message: 'There is no author', arrAuthor });
+        } else {
+            res.json(arrAuthor);
+        }
         // res.send('GET ALL AUTHORS');
     } catch (error) {
         /* This is sending the error message back to the client. */
@@ -95,7 +99,7 @@ router.delete('/delete/all', async (req, res) => {
         const result = await deleteAuthorAll();
         const arrAuthor = await getAuthorAll();
         /* Sending the response back to the client. */
-        res.json(arrAuthor);
+        res.json({ Message: 'There is no author', arrAuthor });
         // res.send('DELETE ALL AUTHORS');
     } catch (error) {
         /* Sending the error message back to the client. */

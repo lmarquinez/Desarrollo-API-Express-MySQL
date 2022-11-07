@@ -35,7 +35,11 @@ router.get('/', async (req, res) => {
         /* Getting all the posts from the database. */
         const arrPost = await getPostAll();
         /* Sending the response to the client. */
-        res.json(arrPost);
+        if (arrPost.length === 0) {
+            res.json({ Message: 'There is no post', arrPost });
+        } else {
+            res.json(arrPost);
+        }
         // res.send('GET ALL POSTS');
     } catch (error) {
         /* Sending the error message to the client. */
@@ -95,7 +99,7 @@ router.delete('/delete/all', async (req, res) => {
         const result = await deletePostAll();
         const arrPost = await getPostAll();
         /* Sending the response to the client. */
-        res.json(arrPost);
+        res.json({ Message: 'There is no post', arrPost });
         // res.send('DELETE ALL POSTS');
     } catch (error) {
         /* Sending the error message to the client. */
@@ -137,7 +141,11 @@ router.get("/author/author=:authorId", checkAuthor, async (req, res) => {
         /* Getting all the posts of an especific author. */
         const arrPost = await getPostByAuthor(authorId);
         /* Sending the response to the client. */
-        res.json(arrPost);
+        if (arrPost.length === 0) {
+            res.json({ Message: 'There is no post', arrPost });
+        } else {
+            res.json(arrPost);
+        }
         // res.send('GET ALL POSTS OF AN ESPECIFIC AUTHOR');
     } catch (error) {
         /* Sending the error message to the client. */
