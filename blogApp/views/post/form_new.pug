@@ -10,8 +10,15 @@ block form_new_post
             textarea.form-control(name="description" required)
         div.mb-3
             label.form-label Category
-            input.form-control(type="text", name="category" required)
+            select.form-control(type="text", name="category" required)
+                option(value='News') News 
+                option(value='Sport') Sport 
+                option(value='Opinion') Opinion 
+                option(value='Photography') Photography 
+                option(value='Research') Research 
         div.mb-3
-            label.form-label Author ID
-            input.form-control(type="number", name="authorId" required)
+            label.form-label Author
+            select.form-control(type="number", name="authorId" required)
+                each author in authors
+                    option(value=author.authorid, required) #{author.name}
         input.btn.btn-info(type="submit", value="Send")

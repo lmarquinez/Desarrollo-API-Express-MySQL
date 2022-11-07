@@ -20,8 +20,12 @@ router.get('/', async (req, res) => {
 });
 
 /* ROUTE TO APPEAR THE FORM VIEW TO CREATE A NEW POST*/
-router.get('/new', (req, res) => {
-    res.render('post/form_new');
+router.get('/new', async (req, res) => {
+    const authors = await getAuthorAll();
+
+    res.render('post/form_new', {
+        authors
+    });
 });
 
 /* REQUEST TO CREATE THE POST FROM THE FORM */
@@ -36,8 +40,9 @@ router.get('/edit/:postId', async (req, res) => {
     const { postId } = req.params;
     const post = await getPostById(postId);
     post.date_create = dayjs(post.date_create).format('YYYY-MM-DD');
+    const authors = await getAuthorAll();
     res.render('post/form_update', {
-        post
+        post, authors
     })
 });
 
