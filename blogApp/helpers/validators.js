@@ -179,7 +179,7 @@ const checkPost = async (req, res, next) => {
         /* A function that is used to pass control to the next middleware function. */
         next();
     } else {
-        res.send('That post does not exist')
+        res.status(404).json({ Message: 'That post does not exist' });
     }
 };
 
@@ -194,7 +194,7 @@ const checkAuthor = async (req, res, next) => {
         /* A function that is used to pass control to the next middleware function. */
         next();
     } else {
-        res.send('That author does not exist')
+        res.status(404).json({ Message: 'That author does not exist' });
     }
 };
 
