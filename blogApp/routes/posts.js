@@ -66,7 +66,6 @@ router.get('/delete/:postId', async (req, res) => {
 router.get('/author', async (req, res) => {
     // const { authorid } = req.query;
     const { authorName } = req.query;
-    console.log(authorName);
     // const posts = await getPostByAuthor(authorid);
     const posts = await getPostByAuthorName(authorName);
 

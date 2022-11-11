@@ -21,7 +21,7 @@ GET http://localhost:3000/api/post/post=1
 
 ###
 # DELETE ONE POST (postId)
-DELETE http://localhost:3000/api/post/delete/post=3
+DELETE http://localhost:3000/api/post/delete/post=13
 
 ###
 # DELETE ALL POSTS
@@ -29,11 +29,11 @@ DELETE http://localhost:3000/api/post/delete/all
 
 ###
 # UPDATE ONE POST (postId)
-PUT http://localhost:3000/api/post/update/post=2
+PUT http://localhost:3000/api/post/update/post=99
 Content-Type: application/json
 
 {
-    "category": "Photography"
+    "category": "Sport"
 
 }
 
@@ -63,7 +63,7 @@ GET http://localhost:3000/api/author/author=99
 
 ###
 # DELETE ONE AUTHOR (authorId)
-DELETE  http://localhost:3000/api/author/delete/author=1
+DELETE  http://localhost:3000/api/author/delete/author=99
 
 ###
 # DELETE ALL AUTHORS
